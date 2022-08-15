@@ -50,3 +50,24 @@ function createGenre(name) {
     });
   });
 }
+
+function createBook(title, author, summary, isbn, genre) {
+  const newBookInfo = {
+    title: title,
+    author: author,
+    summary: summary,
+    isbn: isbn,
+  };
+  if (genre) {
+    newBookInfo.genre = genre;
+  }
+  return new Promise((resolve, reject) => {
+    const newBook = new Book(newBookInfo);
+    newBook.save((err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(newBook);
+    });
+  });
+}
