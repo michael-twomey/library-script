@@ -10,3 +10,8 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', (err) => {
   console.log(`MongoDB connection error: ' + ${err}`);
 });
+
+const Author = require('./models/author');
+const Genre = require('./models/genre');
+const Book = require('./models/book');
+const BookInstance = require('./models/bookinstance');
