@@ -15,3 +15,25 @@ const Author = require('./models/author');
 const Genre = require('./models/genre');
 const Book = require('./models/book');
 const BookInstance = require('./models/bookinstance');
+
+function createAuthor(firstName, familyName, dateBirth, dateDeath) {
+  const newAuthorInfo = {
+    first_name: firstName,
+    family_name: familyName,
+  };
+  if (dateBirth) {
+    newAuthorInfo.date_of_birth = dateBirth;
+  }
+  if (dateDeath) {
+    newAuthorInfo.date_of_death = dateDeath;
+  }
+  return new Promise((resolve, reject) => {
+    const newAuthor = new Author(newAuthorInfo);
+    newAuthor.save((err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(newAuthor);
+    });
+  });
+}
