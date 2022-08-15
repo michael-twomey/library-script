@@ -138,3 +138,19 @@ function getBookInstanceArray(books) {
     createBookInstance(books[1], 'Imprint XXX3'),
   ];
 }
+
+function addAuthors() {
+  return Promise.all(getAuthorsArray());
+}
+
+function addGenres() {
+  return Promise.all(getGenreArray());
+}
+
+function addBooks(authors, genres) {
+  return Promise.all(getBookArray(authors, genres));
+}
+
+function addBookInstances(books) {
+  return Promise.all(getBookInstanceArray(books));
+}
