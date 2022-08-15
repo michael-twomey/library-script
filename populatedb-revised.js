@@ -71,3 +71,23 @@ function createBook(title, author, summary, isbn, genre) {
     });
   });
 }
+
+function createBookInstance(book, imprint, status, dueBack) {
+  const newBookInstanceInfo = {
+    book: book,
+    imprint: imprint,
+    status: status,
+  };
+  if (dueBack) {
+    newBookInstanceInfo.due_back = dueBack;
+  }
+  const newBookInstance = new BookInstance(newBookInstanceInfo);
+  return new Promise((resolve, reject) => {
+    newBookInstance.save((err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(newBookInstance);
+    });
+  });
+}
