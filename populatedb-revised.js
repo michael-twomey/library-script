@@ -37,3 +37,16 @@ function createAuthor(firstName, familyName, dateBirth, dateDeath) {
     });
   });
 }
+
+function createGenre(name) {
+  const newGenreInfo = { name };
+  return new Promise((resolve, reject) => {
+    const newGenre = new Genre(newGenreInfo);
+    newGenre.save((err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(newGenre);
+    });
+  });
+}
