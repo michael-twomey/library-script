@@ -154,3 +154,18 @@ function addBooks(authors, genres) {
 function addBookInstances(books) {
   return Promise.all(getBookInstanceArray(books));
 }
+
+async function populateDB() {
+  const authors = await addAuthors();
+  const genres = await addGenres();
+  const books = await addBooks(authors, genres);
+  const bookInstances = await addBookInstances(books);
+  console.log(authors);
+  console.log(genres);
+  console.log(books);
+  console.log(bookInstances);
+  console.log('Population complete.');
+  mongoose.connection.close();
+}
+
+populateDB();
